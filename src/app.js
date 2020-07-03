@@ -13,12 +13,13 @@ const cookieStorage = {
     }
 }
 
+const storageType = cookieStorage;
+const consentPropertyName = 'jdc_consent';
+const shouldShowPopup = () => !storageType.getItem(consentPropertyName);
+const saveToStorage = () => storageType.setItem(consentPropertyName, true);
 
 window.onload = () => {
-    const storageType = cookieStorage;
-    const consentPropertyName = 'jdc_consent';
-    const shouldShowPopup = storageType => !storageType.getItem(consentPropertyName);
-    const saveToStorage = storageType => storageType.setItem(consentPropertyName, true);
+
     const acceptFn = event => {
         saveToStorage(storageType);
         consentPopup.classList.add('hidden');
