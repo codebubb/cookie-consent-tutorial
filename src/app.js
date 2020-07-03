@@ -1,5 +1,3 @@
-
-
 const cookieStorage = {
     getItem: (item) => {
         const cookies = document.cookie
