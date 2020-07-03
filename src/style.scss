@@ -73,17 +73,3 @@ header {
         outline: 0;
     }
 }
-
-#consent-popup {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem 8rem;
-    background-color: #fff;
-    transition: opacity 1s ease;
-
-    &.hidden {
-        opacity: 0;
-    }
-}

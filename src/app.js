@@ -1,5 +1,3 @@
-
-
 const cookieStorage = {
     getItem: (item) => {
         const cookies = document.cookie
@@ -13,24 +11,17 @@ const cookieStorage = {
     }
 }
 
+const storageType = cookieStorage;
+const consentPropertyName = 'jdc_consent';
+
+const shouldShowPopup = () => !storageType.getItem(consentPropertyName);
+const saveToStorage = () => storageType.setItem(consentPropertyName, true);
 
 window.onload = () => {
-    const storageType = cookieStorage;
-    const consentPropertyName = 'jdc_consent';
-    const shouldShowPopup = storageType => !storageType.getItem(consentPropertyName);
-    const saveToStorage = storageType => storageType.setItem(consentPropertyName, true);
-    const acceptFn = event => {
-        saveToStorage(storageType);
-        consentPopup.classList.add('hidden');
-    }
-    const consentPopup = document.getElementById('consent-popup');
-    const acceptBtn = document.getElementById('accept');
-    acceptBtn.addEventListener('click', acceptFn);
-
     if (shouldShowPopup(storageType)) {
-        setTimeout(() => {
-            consentPopup.classList.remove('hidden');
-        }, 2000);
+        const consent = confirm('Agree to Terms and Conditions?');
+        if (consent) {
+            saveToStorage(storageType);
+        }
     }
-
 };
